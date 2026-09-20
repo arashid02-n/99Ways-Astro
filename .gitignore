@@ -16,3 +16,6 @@ data.db-*
 
 # OS
 .DS_Store
+
+# Scratch
+.tmp/

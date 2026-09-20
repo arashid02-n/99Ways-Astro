@@ -9,7 +9,8 @@ import {
 import { createPublicPageContext } from "emdash/page";
 import { Font } from "astro:assets";
 import { resolveBlogSiteIdentity } from "../utils/site-identity";
-import Logo from "../components/Logo.astro";
+import wordmarkDark from "../../logo/wordmark/dark/99ways-wordmark-dark-background.svg?url";
+import compactDark from "../../logo/compact/dark/99ways-compact-dark-background.svg?url";
 import "../styles/tokens.css";
 import "../styles/theme.css";
 
@@ -94,10 +95,8 @@ const isLoggedIn = !!Astro.locals.user;
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<Font cssVariable="--font-body" preload />
-		<Font cssVariable="--font-display" preload />
-		<Font cssVariable="--font-hero" preload />
-		<Font cssVariable="--font-section" />
-		<Font cssVariable="--font-mono" />
+		<Font cssVariable="--font-primary" preload />
+		<Font cssVariable="--font-brand" />
 		<title>{fullTitle}</title>
 		{
 			faviconUrl && (
@@ -106,19 +105,8 @@ const isLoggedIn = !!Astro.locals.user;
 		}
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png" />
 		<EmDashHead page={pageCtx} />
-		<script is:inline>
-			// Apply an explicit theme choice immediately to prevent flash.
-			// With no cookie, color-scheme: light dark follows the OS.
-			(function () {
-				var c = document.cookie;
-				var i = c.indexOf("theme=");
-				var theme = i >= 0 ? c.slice(i + 6).split(";")[0] : null;
-				if (theme === "dark" || theme === "light") {
-					document.documentElement.classList.add(theme);
-				}
-			})();
-		</script>
 	</head>
 	<body>
 		<EmDashBodyStart page={pageCtx} />
@@ -126,14 +114,21 @@ const isLoggedIn = !!Astro.locals.user;
 		<nav class="nav" aria-label="Primary">
 			<a href="/" class="brand" aria-label="99Ways — home">
 				<img
-					class="brand-frog"
-					src="/_emdash/api/media/file/01M2JA3P4EGPSMNYQYM41QKSVA.webp"
-					alt="99Ways frog mascot"
-					width="44"
-					height="44"
+					class="brand-mark brand-mark--compact"
+					src={compactDark}
+					alt="99Ways"
+					width="146"
+					height="101"
 					fetchpriority="high"
 				/>
-				<Logo />
+				<img
+					class="brand-mark brand-mark--wordmark"
+					src={wordmarkDark}
+					alt="99Ways"
+					width="456"
+					height="130"
+					fetchpriority="high"
+				/>
 			</a>
 			<div class="nav-right">
 				<button
@@ -221,147 +216,8 @@ const isLoggedIn = !!Astro.locals.user;
 		</main>
 
 		<footer class="site-footer">
-			<div class="foot-top">
-				<div class="foot-grid">
-					<div class="foot-map">
-						<iframe
-							title="Google map of 99Ways, Mr. Treublaan 7, 1097 DP Amsterdam"
-							src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBAM2o7PiQqwk15LC1XRH2e_KJ-jUa7KYk&amp;zoom=12&amp;maptype=roadmap&amp;q=99Ways%2C+Mr.Treublaan+7%2C+1097+DP+Amsterdam"
-							loading="lazy"
-							referrerpolicy="no-referrer-when-downgrade"
-						></iframe>
-					</div>
-					<nav class="foot-social" aria-label="99Ways social media profiles">
-						<ul class="foot-logos">
-							<li>
-								<a
-									href="https://www.linkedin.com/company/99ways-io/"
-									target="_blank"
-									rel="noopener"
-								>
-									<img
-										src="/_emdash/api/media/file/01M2JA51C417GZWEGDMKXVK48C.webp"
-										alt="99Ways on LinkedIn"
-										loading="lazy"
-										width="1024"
-										height="1024"
-									/>
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://upwork.com/freelancers/imannazari"
-									target="_blank"
-									rel="noopener"
-								>
-									<img
-										src="/_emdash/api/media/file/01M2JA4YVS2KD5S24PR52T4TKF.webp"
-										alt="Iman Nazari on Upwork"
-										loading="lazy"
-										width="2498"
-										height="2500"
-									/>
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://www.upwork.com/agencies/1718792436665155584/"
-									target="_blank"
-									rel="noopener"
-								>
-									<img
-										src="/_emdash/api/media/file/01M2JA4YE06P3NEJM66JQG51YD.webp"
-										alt="99Ways agency on Upwork"
-										loading="lazy"
-										width="512"
-										height="512"
-									/>
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://www.fiverr.com/ishto7"
-									target="_blank"
-									rel="noopener"
-								>
-									<img
-										src="/_emdash/api/media/file/01M2JA4H00BD1CMGCFBRVGAMQM.webp"
-										alt="Iman Nazari on Fiverr"
-										loading="lazy"
-										width="1500"
-										height="1500"
-									/>
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://github.com/99ways-io"
-									target="_blank"
-									rel="noopener"
-								>
-									<img
-										src="/_emdash/api/media/file/01M2JA4GD1PWA5XXH70M5FDT3F.png"
-										alt="99Ways on GitHub"
-										loading="lazy"
-										width="512"
-										height="512"
-									/>
-								</a>
-							</li>
-							<li>
-								<a
-									href="https://medium.com/nes-stories"
-									target="_blank"
-									rel="noopener"
-								>
-									<img
-										src="/_emdash/api/media/file/01M2JA4WTVQYX32H290ZFNB5V2.webp"
-										alt="99Ways on Medium"
-										loading="lazy"
-										width="512"
-										height="512"
-									/>
-								</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
-				<div class="foot-legal">
-					<p class="foot-lead">
-						<em>Ninety Nine Ways</em> is a registered trademark of
-						<a
-							href="https://nazaries.nl/?utm_source=99ways&utm_content=footer"
-							target="_blank"
-							rel="noopener"
-						>
-							<strong>Nazari Ecom Solutions</strong>
-						</a>.
-					</p>
-					<p>
-						Nazari Ecom Solutions is registered with the Dutch Chamber of
-						Commerce (<strong>KvK</strong>) under registration number
-						<strong>91552451</strong>.
-					</p>
-					<p>Office: Mr. Treublaan 7, 1097 DP Amsterdam, The Netherlands</p>
-					<p>
-						<strong>VAT Identification Number:</strong> NL004899587B87.
-					</p>
-				</div>
-			</div>
-			<div class="footer-inner">
+			<div class="footer-main">
 				<div class="footer-grid">
-					<div class="footer-brand">
-						<figure class="footer-frog-figure">
-							<img
-								src="/_emdash/api/media/file/01M2JA8RMTR7V0WQW2S1JJFCHW.png"
-								alt="99Ways frog"
-								class="footer-frog"
-								loading="lazy"
-								width="1024"
-								height="1024"
-							/>
-						</figure>
-					</div>
 					<div class="footer-col">
 						<h4 class="footer-heading">Resources</h4>
 						<ul class="footer-links">
@@ -392,6 +248,123 @@ const isLoggedIn = !!Astro.locals.user;
 							<li><a href="https://medium.com/nes-stories" target="_blank" rel="noopener">Medium</a></li>
 							<li><a href="https://maps.app.goo.gl/daoBjTCZu7YghnJj9" target="_blank" rel="noopener">Google Maps</a></li>
 						</ul>
+					</div>
+				</div>
+				<div class="footer-meta">
+					<nav class="foot-social" aria-label="99Ways social media profiles">
+						<ul class="foot-logos">
+							<li>
+								<a
+									href="https://www.linkedin.com/company/99ways-io/"
+									target="_blank"
+									rel="noopener"
+								>
+									<img
+										src="/_emdash/api/media/file/01M2JA51C417GZWEGDMKXVK48C.webp"
+										alt="99Ways on LinkedIn"
+										loading="lazy"
+										width="28"
+										height="28"
+									/>
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://upwork.com/freelancers/imannazari"
+									target="_blank"
+									rel="noopener"
+								>
+									<img
+										src="/_emdash/api/media/file/01M2JA4YVS2KD5S24PR52T4TKF.webp"
+										alt="Iman Nazari on Upwork"
+										loading="lazy"
+										width="28"
+										height="28"
+									/>
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://www.upwork.com/agencies/1718792436665155584/"
+									target="_blank"
+									rel="noopener"
+								>
+									<img
+										src="/_emdash/api/media/file/01M2JA4YE06P3NEJM66JQG51YD.webp"
+										alt="99Ways agency on Upwork"
+										loading="lazy"
+										width="28"
+										height="28"
+									/>
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://www.fiverr.com/ishto7"
+									target="_blank"
+									rel="noopener"
+								>
+									<img
+										src="/_emdash/api/media/file/01M2JA4H00BD1CMGCFBRVGAMQM.webp"
+										alt="Iman Nazari on Fiverr"
+										loading="lazy"
+										width="28"
+										height="28"
+									/>
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://github.com/99ways-io"
+									target="_blank"
+									rel="noopener"
+								>
+									<img
+										src="/_emdash/api/media/file/01M2JA4GD1PWA5XXH70M5FDT3F.png"
+										alt="99Ways on GitHub"
+										loading="lazy"
+										width="28"
+										height="28"
+									/>
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://medium.com/nes-stories"
+									target="_blank"
+									rel="noopener"
+								>
+									<img
+										src="/_emdash/api/media/file/01M2JA4WTVQYX32H290ZFNB5V2.webp"
+										alt="99Ways on Medium"
+										loading="lazy"
+										width="28"
+										height="28"
+									/>
+								</a>
+							</li>
+						</ul>
+					</nav>
+					<div class="foot-legal">
+						<p class="foot-lead">
+							<em>Ninety Nine Ways</em> is a registered trademark of
+							<a
+								href="https://nazaries.nl/?utm_source=99ways&utm_content=footer"
+								target="_blank"
+								rel="noopener"
+							>
+								<strong>Nazari Ecom Solutions</strong>
+							</a>.
+						</p>
+						<p>
+							Nazari Ecom Solutions is registered with the Dutch Chamber of
+							Commerce (<strong>KvK</strong>) under registration number
+							<strong>91552451</strong>.
+						</p>
+						<p>Office: Mr. Treublaan 7, 1097 DP Amsterdam, The Netherlands</p>
+						<p>
+							<strong>VAT Identification Number:</strong> NL004899587B87.
+						</p>
 					</div>
 				</div>
 			</div>
@@ -454,21 +427,9 @@ const isLoggedIn = !!Astro.locals.user;
 				}
 
 				/*
-				 * Design tokens live in src/styles/tokens.css. Colors are
-				 * defined with light-dark(); these rules pin the scheme when
-				 * the footer switcher sets an explicit choice. With no class,
-				 * color-scheme: light dark follows the OS preference.
+				 * The site is dark-only (design.md §2). No light/dark toggle,
+				 * no theme switcher, no light-dark() adaptation.
 				 */
-				@supports (color: light-dark(#000, #fff)) {
-					:root.light {
-						color-scheme: light;
-					}
-
-					:root.dark {
-						color-scheme: dark;
-					}
-				}
-
 				html {
 					scroll-behavior: smooth;
 				}
@@ -476,7 +437,7 @@ const isLoggedIn = !!Astro.locals.user;
 				body {
 					font-family: var(--font-body);
 					font-size: var(--font-size-base);
-					line-height: var(--leading-relaxed);
+					line-height: var(--leading-body);
 					color: var(--color-text);
 					background: var(--color-bg);
 					-webkit-font-smoothing: antialiased;
@@ -507,18 +468,17 @@ const isLoggedIn = !!Astro.locals.user;
 				h5,
 				h6 {
 					font-family: var(--font-heading);
-					line-height: var(--leading-tight);
+					line-height: var(--leading-heading);
 					font-weight: var(--font-weight-heading);
-					letter-spacing: var(--tracking-snug);
+					letter-spacing: -0.01em;
 				}
 
 				h1 {
 					font-weight: var(--font-weight-display);
-					letter-spacing: var(--tracking-tight);
 				}
 
 				::selection {
-					background: var(--color-brand);
+					background: var(--color-action);
 					color: var(--color-on-brand);
 				}
 			}
@@ -532,7 +492,6 @@ const isLoggedIn = !!Astro.locals.user;
 			background: color-mix(in srgb, var(--color-bg) 88%, transparent);
 			backdrop-filter: blur(14px);
 			-webkit-backdrop-filter: blur(14px);
-			border-top: 3px solid var(--color-logo);
 			border-bottom: 1px solid var(--color-border-subtle);
 			box-shadow: 0 8px 24px -18px color-mix(in srgb, var(--color-text) 35%, transparent);
 		}
@@ -551,37 +510,33 @@ const isLoggedIn = !!Astro.locals.user;
 		.brand {
 			display: inline-flex;
 			align-items: center;
-			gap: var(--spacing-3);
 			color: var(--color-text);
 			text-decoration: none;
 			min-width: 0;
 		}
 
-		.brand-frog {
-			width: 44px;
-			height: 44px;
-			border-radius: 50%;
-			object-fit: cover;
+		/* Compact mark on mobile, wordmark on desktop (asset_manifest.md 1) */
+		.brand-mark {
+			height: auto;
 			display: block;
-			background: var(--color-surface);
-			border: 1px solid var(--color-border);
-			box-shadow: var(--shadow-sm);
 		}
 
-		.brand:hover .brand-frog {
-			animation: frog-hop 0.55s ease;
+		.brand-mark--compact {
+			width: 64px;
 		}
 
-		@keyframes frog-hop {
-			0% { transform: translateY(0) rotate(0deg); }
-			35% { transform: translateY(-7px) rotate(-6deg); }
-			70% { transform: translateY(0) rotate(4deg); }
-			100% { transform: translateY(0) rotate(0deg); }
+		.brand-mark--wordmark {
+			display: none;
 		}
 
-		@media (prefers-reduced-motion: reduce) {
-			.brand:hover .brand-frog {
-				animation: none;
+		@media (min-width: 768px) {
+			.brand-mark--compact {
+				display: none;
+			}
+
+			.brand-mark--wordmark {
+				display: block;
+				width: 200px;
 			}
 		}
 
@@ -619,7 +574,7 @@ const isLoggedIn = !!Astro.locals.user;
 			display: flex;
 			align-items: center;
 			gap: var(--spacing-2);
-			font-size: var(--font-size-sm);
+			font-size: var(--text-label-desktop);
 		}
 
 		.nav-drop {
@@ -635,11 +590,11 @@ const isLoggedIn = !!Astro.locals.user;
 			border: none;
 			border-radius: var(--radius);
 			cursor: pointer;
-			color: var(--color-muted);
-			font-family: var(--font-mono);
-			font-size: var(--font-size-kicker);
+			color: var(--color-text-muted);
+			font-family: var(--font-brand);
+			font-size: var(--text-small-desktop);
 			font-weight: 600;
-			line-height: 1;
+			line-height: var(--leading-label);
 			letter-spacing: var(--tracking-eyebrow);
 			text-transform: uppercase;
 			transition: color var(--transition-fast), background var(--transition-fast);
@@ -673,7 +628,7 @@ const isLoggedIn = !!Astro.locals.user;
 			padding-top: calc(var(--spacing-3) + 3px);
 			background: var(--color-bg);
 			border: 1px solid var(--color-border);
-			border-radius: var(--radius-lg);
+			border-radius: 8px;
 			box-shadow: var(--shadow-lg);
 			overflow: hidden;
 			opacity: 0;
@@ -681,16 +636,6 @@ const isLoggedIn = !!Astro.locals.user;
 			transform: translateY(8px);
 			transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
 			z-index: 200;
-		}
-
-		.nav-menu::before {
-			content: "";
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			height: 3px;
-			background: linear-gradient(90deg, var(--color-success), var(--color-brand));
 		}
 
 		.nav-drop:hover .nav-menu,
@@ -703,12 +648,12 @@ const isLoggedIn = !!Astro.locals.user;
 
 		.nav-menu-kicker {
 			padding: var(--spacing-2) var(--spacing-3) var(--spacing-1);
-			font-family: var(--font-mono);
-			font-size: var(--font-size-xs);
+			font-family: var(--font-brand);
+			font-size: var(--text-small-mobile);
 			font-weight: 600;
 			letter-spacing: var(--tracking-eyebrow);
 			text-transform: uppercase;
-			color: var(--color-muted);
+			color: var(--color-text-muted);
 		}
 
 		.nav-menu a {
@@ -717,10 +662,10 @@ const isLoggedIn = !!Astro.locals.user;
 			justify-content: space-between;
 			gap: var(--spacing-3);
 			padding: var(--spacing-3);
-			border-radius: var(--radius);
+			border-radius: var(--radius-sm);
 			color: var(--color-text-secondary);
 			text-decoration: none;
-			font-size: var(--font-size-sm);
+			font-size: var(--text-label-desktop);
 			font-weight: 500;
 			transition: background var(--transition-fast), color var(--transition-fast);
 		}
@@ -735,7 +680,7 @@ const isLoggedIn = !!Astro.locals.user;
 			opacity: 0;
 			transform: translateX(-4px);
 			transition: opacity var(--transition-fast), transform var(--transition-fast);
-			color: var(--color-success);
+			color: var(--color-action);
 		}
 
 		.nav-menu a:hover .nav-arrow,
@@ -744,40 +689,40 @@ const isLoggedIn = !!Astro.locals.user;
 			transform: translateX(0);
 		}
 
+		/* Header CTA follows the secondary button system (design.md 5.2) */
 		.nav-contact {
 			display: inline-flex;
 			align-items: center;
 			margin-inline-start: var(--spacing-2);
 			padding: 0.625rem 1.375rem;
-			border-radius: 999px;
-			background: var(--color-text);
-			color: var(--color-bg);
-			font-family: var(--font-mono);
-			font-size: var(--font-size-kicker);
-			font-weight: 700;
-			line-height: 1;
+			border-radius: var(--radius-full);
+			background: transparent;
+			color: var(--color-text);
+			font-family: var(--font-brand);
+			font-size: var(--text-small-desktop);
+			font-weight: 600;
+			line-height: var(--leading-label);
 			letter-spacing: var(--tracking-eyebrow);
 			text-transform: uppercase;
 			text-decoration: none;
-			border: 1px solid transparent;
+			border: 1px solid var(--color-border-strong);
 			box-shadow: var(--shadow-sm);
-			transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+			transition: background var(--transition-base), border-color var(--transition-base), color var(--transition-base), transform var(--transition-base);
 		}
 
 		.nav-contact:hover {
-			background: var(--color-success);
-			color: #fff;
+			border-color: var(--color-action-hover);
+			color: var(--color-action-hover);
 			transform: translateY(-1px);
-			box-shadow: var(--shadow-lg);
 		}
 
 		.nav-contact.active {
-			outline: 2px solid var(--color-success);
-			outline-offset: 2px;
+			border-color: var(--color-action);
+			color: var(--color-action);
 		}
 
 		.nav-admin {
-			font-size: var(--font-size-sm);
+			font-size: var(--text-label-desktop);
 			color: var(--color-text-secondary);
 			text-decoration: none;
 			transition: color var(--transition-fast);
@@ -852,204 +797,23 @@ const isLoggedIn = !!Astro.locals.user;
 				min-height: calc(100vh - var(--nav-height) - 300px);
 			}
 
-			/* Footer */
+			/* Footer: one unified composition (design.md 15) */
 			.site-footer {
 				background: var(--color-bg);
 				border-top: 1px solid var(--color-border-subtle);
 			}
 
-			/* Footer top band: map, social logos, legal */
-			.foot-top {
-			/* Fixed warm-white ink scale: the band is a fixed graphite tone in
-			   both modes, so the legal text uses fixed palette anchors for
-			   guaranteed contrast (body 8.4:1, secondary ~4.5:1). */
-			--foot-ink: #f4f3ef;
-			--foot-soft: #b5b8b1;
-				--foot-line: color-mix(in srgb, var(--color-bg) 16%, transparent);
-				--foot-tile: color-mix(in srgb, var(--color-bg) 6%, transparent);
-			/* Warm graphite: the two fixed palette anchors (#292B2A / #F4F3EF),
-			   slightly lifted from graphite so the band sits lighter than the
-			   About Us field in dark mode while staying a true footer in both modes. */
-			--foot-band: color-mix(in srgb, #292b2a 86%, #f4f3ef);
-			background:
-				radial-gradient(
-					44rem 22rem at 12% 0%,
-					color-mix(in srgb, var(--color-success) 10%, transparent),
-					transparent 60%
-				),
-				var(--foot-band);
-				color: var(--foot-ink);
-			}
-
-			.foot-grid {
+			.footer-main {
 				max-width: var(--wide-width);
 				margin: 0 auto;
-				padding: clamp(3rem, 6vw, 5rem) var(--page-gutter) var(--spacing-8);
-				display: grid;
-				grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
-				gap: clamp(2rem, 4vw, 4rem);
-				align-items: center;
-			}
-
-			.foot-map {
-				border: 1px solid var(--foot-line);
-				border-radius: calc(var(--radius-lg) + 6px);
-				padding: var(--spacing-3);
-				background: var(--foot-tile);
-				min-width: 0;
-			}
-
-			.foot-map iframe {
-				display: block;
-				width: 100%;
-				aspect-ratio: 4 / 3;
-				border: 0;
-				border-radius: var(--radius-lg);
-				background: var(--foot-tile);
-			}
-
-			.foot-social {
-				min-width: 0;
-			}
-
-			.foot-logos {
-				list-style: none;
-				margin: 0;
-				padding: 0;
-				display: grid;
-				grid-template-columns: repeat(3, 1fr);
-				gap: var(--spacing-4);
-			}
-
-			.foot-logos a {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				min-height: 96px;
-				padding: var(--spacing-4);
-				border: 1px solid var(--foot-line);
-				border-radius: var(--radius-lg);
-				background: var(--foot-tile);
-				transition:
-					border-color 0.3s ease,
-					background 0.3s ease;
-			}
-
-			.foot-logos a:hover {
-				border-color: color-mix(in srgb, var(--color-success) 45%, var(--foot-line));
-				background: color-mix(in srgb, var(--color-bg) 10%, transparent);
-			}
-
-			.foot-logos img {
-				max-width: 100%;
-				max-height: 56px;
-				width: auto;
-				height: auto;
-				object-fit: contain;
-				display: block;
-			}
-
-			.foot-legal {
-				max-width: var(--wide-width);
-				margin: 0 auto;
-				padding: var(--spacing-8) var(--page-gutter) clamp(3rem, 6vw, 4.5rem);
-				border-top: 1px solid var(--foot-line);
-				display: grid;
-				gap: var(--spacing-3);
-			}
-
-			.foot-lead {
-				font-size: var(--font-size-lg);
-				line-height: var(--leading-relaxed);
-				color: var(--foot-ink);
-				max-width: 75ch;
-			}
-
-			.foot-lead em {
-				font-style: italic;
-			}
-
-			.foot-lead a {
-				color: light-dark(#a6baff, #3558b8);
-				text-decoration: underline;
-				text-decoration-thickness: 1px;
-				text-underline-offset: 3px;
-				transition: color 0.3s ease;
-			}
-
-			.foot-lead a:hover {
-				color: var(--color-success);
-			}
-
-			.foot-legal p {
-				margin: 0;
-				font-size: var(--font-size-sm);
-				line-height: var(--leading-relaxed);
-				color: var(--foot-soft);
-				max-width: 75ch;
-			}
-
-			.foot-legal p strong {
-				color: var(--foot-ink);
-				font-weight: 600;
-			}
-
-			.footer-inner {
-				max-width: var(--wide-width);
-				margin: 0 auto;
-				padding: var(--section-y) var(--page-gutter) var(--spacing-8);
-				background: var(--color-bg);
+				padding: var(--section-y) var(--page-gutter) var(--spacing-10);
 			}
 
 			.footer-grid {
 				display: grid;
-				grid-template-columns: 1.5fr 1fr 1fr 1fr;
-				gap: var(--spacing-8);
+				grid-template-columns: 1fr 1fr 1fr;
+				gap: var(--spacing-12);
 				margin-bottom: var(--spacing-12);
-			}
-
-			.footer-brand {
-				max-width: none;
-				padding-right: var(--spacing-8);
-			}
-
-			.footer-frog-figure {
-				margin: 0;
-				max-width: 240px;
-			}
-
-			.footer-frog {
-				width: 100%;
-				height: auto;
-				display: block;
-				filter: drop-shadow(0 18px 28px rgba(20, 35, 22, 0.28));
-			}
-
-			.footer-logo {
-				font-size: var(--font-size-lg);
-				font-weight: 700;
-				color: var(--color-text);
-				text-decoration: none;
-				letter-spacing: var(--tracking-snug);
-			}
-
-			.footer-logo-img {
-				height: 24px;
-				width: auto;
-			}
-
-			.footer-tagline {
-				margin-top: var(--spacing-4);
-				font-size: var(--font-size-sm);
-				color: var(--color-text-secondary);
-				line-height: var(--leading-relaxed);
-			}
-
-			.footer-description {
-				margin-top: var(--spacing-3);
-				font-size: var(--font-size-sm);
-				color: var(--color-muted);
-				line-height: var(--leading-relaxed);
 			}
 
 			.footer-col {
@@ -1057,8 +821,8 @@ const isLoggedIn = !!Astro.locals.user;
 			}
 
 			.footer-heading {
-				font-family: var(--font-mono);
-				font-size: var(--font-size-kicker);
+				font-family: var(--font-brand);
+				font-size: var(--text-small-desktop);
 				font-weight: 700;
 				text-transform: uppercase;
 				letter-spacing: var(--tracking-eyebrow);
@@ -1077,7 +841,7 @@ const isLoggedIn = !!Astro.locals.user;
 			.footer-links a {
 				color: var(--color-text-secondary);
 				text-decoration: none;
-				font-size: var(--font-size-sm);
+				font-size: var(--text-label-desktop);
 				transition: color var(--transition-fast);
 			}
 
@@ -1085,6 +849,92 @@ const isLoggedIn = !!Astro.locals.user;
 				color: var(--color-text);
 			}
 
+			.footer-meta {
+				padding-top: var(--spacing-10);
+				border-top: 1px solid var(--color-border-subtle);
+				display: grid;
+				gap: var(--spacing-8);
+			}
+
+			/* Social icons: small, restrained, consistent (design.md 15.1) */
+			.foot-social {
+				min-width: 0;
+			}
+
+			.foot-logos {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				flex-wrap: wrap;
+				gap: var(--spacing-4);
+			}
+
+			.foot-logos a {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 28px;
+				height: 28px;
+				padding: 0;
+				border-radius: var(--radius-sm);
+				opacity: 0.85;
+				transition: opacity var(--transition-fast);
+			}
+
+			.foot-logos a:hover {
+				opacity: 1;
+			}
+
+			.foot-logos img {
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+				display: block;
+			}
+
+			.foot-legal {
+				display: grid;
+				gap: var(--spacing-3);
+			}
+
+			.foot-lead {
+				font-size: var(--font-size-lg);
+				line-height: var(--leading-body);
+				color: var(--color-text);
+				max-width: 75ch;
+			}
+
+			.foot-lead em {
+				font-style: italic;
+			}
+
+			.foot-lead a {
+				color: var(--color-brand);
+				text-decoration: underline;
+				text-decoration-thickness: 1px;
+				text-underline-offset: 3px;
+				transition: color var(--transition-fast);
+			}
+
+			.foot-lead a:hover {
+				color: var(--color-brand-hover);
+			}
+
+			.foot-legal p {
+				margin: 0;
+				font-size: var(--text-label-desktop);
+				line-height: var(--leading-body);
+				color: var(--color-text-muted);
+				max-width: 75ch;
+			}
+
+			.foot-legal p strong {
+				color: var(--color-text);
+				font-weight: 600;
+			}
+
+			/* Final bottom bar: dark blue (homepage-spec.md 9) */
 			.footer-bottom {
 				display: flex;
 				justify-content: center;
@@ -1093,48 +943,36 @@ const isLoggedIn = !!Astro.locals.user;
 				column-gap: var(--spacing-4);
 				row-gap: var(--spacing-2);
 				padding: var(--spacing-6) var(--page-gutter);
-				background: color-mix(in srgb, var(--color-brand) 60%, #141513);
+				background: var(--color-blue-2);
 			}
 
 			.footer-copyright {
 				margin: 0;
-				font-size: var(--font-size-sm);
-				color: #f4f3ef;
+				font-size: var(--text-label-desktop);
+				color: var(--color-text);
 			}
 
 			.footer-sep {
-				color: color-mix(in srgb, #f4f3ef 45%, transparent);
+				color: color-mix(in srgb, var(--color-text) 45%, transparent);
 			}
 
 			.footer-legal-link {
-				font-size: var(--font-size-sm);
-				color: #f4f3ef;
+				font-size: var(--text-label-desktop);
+				color: var(--color-text);
 				text-decoration: none;
-				transition: color 0.3s ease;
+				transition: color var(--transition-fast);
 			}
 
 			.footer-legal-link:hover {
-				color: #fff;
+				color: var(--color-brand);
 				text-decoration: underline;
 				text-underline-offset: 3px;
 			}
 
 		@media (max-width: 900px) {
 			.footer-grid {
-				grid-template-columns: 1fr;
-				gap: var(--spacing-6);
-			}
-
-			.footer-brand {
-				padding-right: 0;
-			}
-
-			.foot-grid {
-				grid-template-columns: 1fr;
-			}
-
-			.foot-map iframe {
-				aspect-ratio: 16 / 10;
+				grid-template-columns: 1fr 1fr;
+				gap: var(--spacing-8);
 			}
 		}
 
@@ -1143,16 +981,8 @@ const isLoggedIn = !!Astro.locals.user;
 				grid-template-columns: 1fr;
 			}
 
-			.foot-logos {
-				grid-template-columns: repeat(2, 1fr);
-			}
-
-			.foot-logos a {
-				min-height: 88px;
-			}
-
-			.footer-brand {
-				grid-column: span 1;
+			.footer-meta {
+				gap: var(--spacing-6);
 			}
 		}
 	</style>
@@ -1210,4 +1040,3 @@ const isLoggedIn = !!Astro.locals.user;
 		<EmDashBodyEnd page={pageCtx} />
 	</body>
 </html>
-
