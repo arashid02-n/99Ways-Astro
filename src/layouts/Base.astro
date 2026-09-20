@@ -221,188 +221,200 @@ const isLoggedIn = !!Astro.locals.user;
 		</main>
 
 		<footer class="site-footer">
+			<div class="foot-top">
+				<div class="foot-grid">
+					<div class="foot-map">
+						<iframe
+							title="Google map of 99Ways, Mr. Treublaan 7, 1097 DP Amsterdam"
+							src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBAM2o7PiQqwk15LC1XRH2e_KJ-jUa7KYk&amp;zoom=12&amp;maptype=roadmap&amp;q=99Ways%2C+Mr.Treublaan+7%2C+1097+DP+Amsterdam"
+							loading="lazy"
+							referrerpolicy="no-referrer-when-downgrade"
+						></iframe>
+					</div>
+					<nav class="foot-social" aria-label="99Ways social media profiles">
+						<ul class="foot-logos">
+							<li>
+								<a
+									href="https://www.linkedin.com/company/99ways-io/"
+									target="_blank"
+									rel="noopener"
+								>
+									<img
+										src="/_emdash/api/media/file/01M2JA51C417GZWEGDMKXVK48C.webp"
+										alt="99Ways on LinkedIn"
+										loading="lazy"
+										width="1024"
+										height="1024"
+									/>
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://upwork.com/freelancers/imannazari"
+									target="_blank"
+									rel="noopener"
+								>
+									<img
+										src="/_emdash/api/media/file/01M2JA4YVS2KD5S24PR52T4TKF.webp"
+										alt="Iman Nazari on Upwork"
+										loading="lazy"
+										width="2498"
+										height="2500"
+									/>
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://www.upwork.com/agencies/1718792436665155584/"
+									target="_blank"
+									rel="noopener"
+								>
+									<img
+										src="/_emdash/api/media/file/01M2JA4YE06P3NEJM66JQG51YD.webp"
+										alt="99Ways agency on Upwork"
+										loading="lazy"
+										width="512"
+										height="512"
+									/>
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://www.fiverr.com/ishto7"
+									target="_blank"
+									rel="noopener"
+								>
+									<img
+										src="/_emdash/api/media/file/01M2JA4H00BD1CMGCFBRVGAMQM.webp"
+										alt="Iman Nazari on Fiverr"
+										loading="lazy"
+										width="1500"
+										height="1500"
+									/>
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://github.com/99ways-io"
+									target="_blank"
+									rel="noopener"
+								>
+									<img
+										src="/_emdash/api/media/file/01M2JA4GD1PWA5XXH70M5FDT3F.png"
+										alt="99Ways on GitHub"
+										loading="lazy"
+										width="512"
+										height="512"
+									/>
+								</a>
+							</li>
+							<li>
+								<a
+									href="https://medium.com/nes-stories"
+									target="_blank"
+									rel="noopener"
+								>
+									<img
+										src="/_emdash/api/media/file/01M2JA4WTVQYX32H290ZFNB5V2.webp"
+										alt="99Ways on Medium"
+										loading="lazy"
+										width="512"
+										height="512"
+									/>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="foot-legal">
+					<p class="foot-lead">
+						<em>Ninety Nine Ways</em> is a registered trademark of
+						<a
+							href="https://nazaries.nl/?utm_source=99ways&utm_content=footer"
+							target="_blank"
+							rel="noopener"
+						>
+							<strong>Nazari Ecom Solutions</strong>
+						</a>.
+					</p>
+					<p>
+						Nazari Ecom Solutions is registered with the Dutch Chamber of
+						Commerce (<strong>KvK</strong>) under registration number
+						<strong>91552451</strong>.
+					</p>
+					<p>Office: Mr. Treublaan 7, 1097 DP Amsterdam, The Netherlands</p>
+					<p>
+						<strong>VAT Identification Number:</strong> NL004899587B87.
+					</p>
+				</div>
+			</div>
 			<div class="footer-inner">
 				<div class="footer-grid">
 					<div class="footer-brand">
-						<a href="/" class="footer-logo" aria-label="99Ways — home">
-							<Logo size="lg" />
-						</a>
-						<p class="footer-tagline">{siteTagline}</p>
-						<p class="footer-description">
-							99Ways writes about conversion rate optimization,
-							experimentation, analytics, and tracking.
-						</p>
+						<figure class="footer-frog-figure">
+							<img
+								src="/_emdash/api/media/file/01M2JA8RMTR7V0WQW2S1JJFCHW.png"
+								alt="99Ways frog"
+								class="footer-frog"
+								loading="lazy"
+								width="1024"
+								height="1024"
+							/>
+						</figure>
 					</div>
 					<div class="footer-col">
-						<h4 class="footer-heading">Navigate</h4>
+						<h4 class="footer-heading">Resources</h4>
 						<ul class="footer-links">
-							{
-								navItems.map((item) => (
-									<li>
-										<a href={item.url} target={item.target}>{item.label}</a>
-									</li>
-								))
-							}
-							<li><a href="/rss.xml">RSS feed</a></li>
-						</ul>
-					</div>
-					<div class="footer-col">
-						<h4 class="footer-heading">Topics</h4>
-						<ul class="footer-links">
-							<li><a href="/category/guides-how-to">Guides &amp; How-tos</a></li>
-							<li><a href="/category/optimization-experience">Optimization Experiences</a></li>
+							<li><a href="/category/guides-how-to">Guides and How-tos</a></li>
 							<li><a href="/category/posthog-feature-breakdown">PostHog Feature Breakdowns</a></li>
+							<li><a href="/category/tools-comparison">Tools Comparison</a></li>
+							<li><a href="/category/optimization-experience">Optimization Experiences</a></li>
+							<li><a href="/category/featured-experiments">Featured Experiments</a></li>
 						</ul>
 					</div>
 					<div class="footer-col">
-						<h4 class="footer-heading">Company</h4>
+						<h4 class="footer-heading">Services</h4>
 						<ul class="footer-links">
-							{
-								legalItems.map((item) => (
-									<li>
-										<a href={item.url} target={item.target}>{item.label}</a>
-									</li>
-								))
-							}
+							<li><a href="/posts/hire-posthog-expert-guide">PostHog &amp; Product Analytics</a></li>
+							<li><a href="/posts/hire-hyros-expert-guide">Hyros &amp; Tracking Setup</a></li>
+							<li><a href="/pages/hire-cro-expert">CRO</a></li>
 						</ul>
 					</div>
-				</div>
-				<div class="footer-bottom">
-					<p class="footer-copyright">
-						© {new Date().getFullYear()} {siteTitle}. All rights reserved.
-					</p>
-					<div class="theme-switcher">
-						<button
-							type="button"
-							class="theme-btn"
-							data-theme="light"
-							aria-label="Light mode"
-						>
-							<svg
-								width="16"
-								height="16"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								><circle cx="12" cy="12" r="5"></circle><line
-									x1="12"
-									y1="1"
-									x2="12"
-									y2="3"></line><line x1="12" y1="21" x2="12" y2="23"
-								></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"
-								></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"
-								></line><line x1="1" y1="12" x2="3" y2="12"></line><line
-									x1="21"
-									y1="12"
-									x2="23"
-									y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"
-								></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"
-								></line></svg
-							>
-						</button>
-						<button
-							type="button"
-							class="theme-btn"
-							data-theme="dark"
-							aria-label="Dark mode"
-						>
-							<svg
-								width="16"
-								height="16"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
-								></path></svg
-							>
-						</button>
-						<button
-							type="button"
-							class="theme-btn"
-							data-theme="system"
-							aria-label="System theme"
-						>
-							<svg
-								width="16"
-								height="16"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								><rect x="2" y="3" width="20" height="14" rx="2" ry="2"
-								></rect><line x1="8" y1="21" x2="16" y2="21"></line><line
-									x1="12"
-									y1="17"
-									x2="12"
-									y2="21"></line></svg
-							>
-						</button>
+					<div class="footer-col">
+						<h4 class="footer-heading">About Us</h4>
+						<ul class="footer-links">
+							<li><a href="/pages/contact-form">Contact Us</a></li>
+							<li><a href="https://www.upwork.com/freelancers/imannazari" target="_blank" rel="noopener">Iman&#8217;s Upwork</a></li>
+							<li><a href="https://www.upwork.com/agencies/1718792436665155584/" target="_blank" rel="noopener">Agency&#8217;s Upwork</a></li>
+							<li><a href="https://www.fiverr.com/ishto7" target="_blank" rel="noopener">Fiverr</a></li>
+							<li><a href="https://github.com/99ways-io" target="_blank" rel="noopener">GitHub</a></li>
+							<li><a href="https://www.linkedin.com/company/99ways-io/" target="_blank" rel="noopener">LinkedIn</a></li>
+							<li><a href="https://medium.com/nes-stories" target="_blank" rel="noopener">Medium</a></li>
+							<li><a href="https://maps.app.goo.gl/daoBjTCZu7YghnJj9" target="_blank" rel="noopener">Google Maps</a></li>
+						</ul>
 					</div>
 				</div>
 			</div>
+			<div class="footer-bottom">
+				<p class="footer-copyright">
+					© 2026 99Ways. All rights reserved.
+				</p>
+				<span class="footer-sep" aria-hidden="true">|</span>
+				<a
+					class="footer-legal-link"
+					href="https://99ways.io/privacy-policy/"
+				>
+					Privacy Policy
+				</a>
+				<span class="footer-sep" aria-hidden="true">|</span>
+				<a
+					class="footer-legal-link"
+					href="https://99ways.io/terms-of-use/"
+				>
+					Terms of Service
+					</a>
+				</div>
 		</footer>
-
-		<script>
-			// Theme switcher
-			const THEME_REGEX = /theme=([^;]+)/;
-			const themeBtns =
-				document.querySelectorAll<HTMLButtonElement>(".theme-btn");
-			const root = document.documentElement;
-
-			function setCookie(
-				name: string,
-				value: string,
-				maxAge: number = 31536000
-			) {
-				const secure = location.protocol === "https:" ? "; Secure" : "";
-				if (value === "") {
-					document.cookie = `${name}=; path=/; max-age=0; SameSite=Lax${secure}`;
-				} else {
-					document.cookie = `${name}=${value}; path=/; max-age=${maxAge}; SameSite=Lax${secure}`;
-				}
-			}
-
-			function setTheme(theme: string) {
-				if (theme === "system") {
-					setCookie("theme", "");
-					root.classList.remove("light", "dark");
-				} else {
-					setCookie("theme", theme);
-					root.classList.remove("light", "dark");
-					root.classList.add(theme);
-				}
-				updateActiveBtn(theme);
-			}
-
-			function updateActiveBtn(theme: string) {
-				themeBtns.forEach((btn) => {
-					btn.classList.toggle("active", btn.dataset.theme === theme);
-				});
-			}
-
-			function getStoredTheme(): string {
-				const match = document.cookie.match(THEME_REGEX);
-				return match ? match[1] : "system";
-			}
-
-			// Initialize
-			const storedTheme = getStoredTheme();
-			setTheme(storedTheme);
-
-			themeBtns.forEach((btn) => {
-				btn.addEventListener("click", () => {
-					setTheme(btn.dataset.theme || "system");
-				});
-			});
-		</script>
 
 		<style is:global>
 			/*
@@ -842,14 +854,151 @@ const isLoggedIn = !!Astro.locals.user;
 
 			/* Footer */
 			.site-footer {
-				background: var(--color-bg-subtle);
+				background: var(--color-bg);
 				border-top: 1px solid var(--color-border-subtle);
+			}
+
+			/* Footer top band: map, social logos, legal */
+			.foot-top {
+			/* Fixed warm-white ink scale: the band is a fixed graphite tone in
+			   both modes, so the legal text uses fixed palette anchors for
+			   guaranteed contrast (body 8.4:1, secondary ~4.5:1). */
+			--foot-ink: #f4f3ef;
+			--foot-soft: #b5b8b1;
+				--foot-line: color-mix(in srgb, var(--color-bg) 16%, transparent);
+				--foot-tile: color-mix(in srgb, var(--color-bg) 6%, transparent);
+			/* Warm graphite: the two fixed palette anchors (#292B2A / #F4F3EF),
+			   slightly lifted from graphite so the band sits lighter than the
+			   About Us field in dark mode while staying a true footer in both modes. */
+			--foot-band: color-mix(in srgb, #292b2a 86%, #f4f3ef);
+			background:
+				radial-gradient(
+					44rem 22rem at 12% 0%,
+					color-mix(in srgb, var(--color-success) 10%, transparent),
+					transparent 60%
+				),
+				var(--foot-band);
+				color: var(--foot-ink);
+			}
+
+			.foot-grid {
+				max-width: var(--wide-width);
+				margin: 0 auto;
+				padding: clamp(3rem, 6vw, 5rem) var(--page-gutter) var(--spacing-8);
+				display: grid;
+				grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+				gap: clamp(2rem, 4vw, 4rem);
+				align-items: center;
+			}
+
+			.foot-map {
+				border: 1px solid var(--foot-line);
+				border-radius: calc(var(--radius-lg) + 6px);
+				padding: var(--spacing-3);
+				background: var(--foot-tile);
+				min-width: 0;
+			}
+
+			.foot-map iframe {
+				display: block;
+				width: 100%;
+				aspect-ratio: 4 / 3;
+				border: 0;
+				border-radius: var(--radius-lg);
+				background: var(--foot-tile);
+			}
+
+			.foot-social {
+				min-width: 0;
+			}
+
+			.foot-logos {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: var(--spacing-4);
+			}
+
+			.foot-logos a {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				min-height: 96px;
+				padding: var(--spacing-4);
+				border: 1px solid var(--foot-line);
+				border-radius: var(--radius-lg);
+				background: var(--foot-tile);
+				transition:
+					border-color 0.3s ease,
+					background 0.3s ease;
+			}
+
+			.foot-logos a:hover {
+				border-color: color-mix(in srgb, var(--color-success) 45%, var(--foot-line));
+				background: color-mix(in srgb, var(--color-bg) 10%, transparent);
+			}
+
+			.foot-logos img {
+				max-width: 100%;
+				max-height: 56px;
+				width: auto;
+				height: auto;
+				object-fit: contain;
+				display: block;
+			}
+
+			.foot-legal {
+				max-width: var(--wide-width);
+				margin: 0 auto;
+				padding: var(--spacing-8) var(--page-gutter) clamp(3rem, 6vw, 4.5rem);
+				border-top: 1px solid var(--foot-line);
+				display: grid;
+				gap: var(--spacing-3);
+			}
+
+			.foot-lead {
+				font-size: var(--font-size-lg);
+				line-height: var(--leading-relaxed);
+				color: var(--foot-ink);
+				max-width: 75ch;
+			}
+
+			.foot-lead em {
+				font-style: italic;
+			}
+
+			.foot-lead a {
+				color: light-dark(#a6baff, #3558b8);
+				text-decoration: underline;
+				text-decoration-thickness: 1px;
+				text-underline-offset: 3px;
+				transition: color 0.3s ease;
+			}
+
+			.foot-lead a:hover {
+				color: var(--color-success);
+			}
+
+			.foot-legal p {
+				margin: 0;
+				font-size: var(--font-size-sm);
+				line-height: var(--leading-relaxed);
+				color: var(--foot-soft);
+				max-width: 75ch;
+			}
+
+			.foot-legal p strong {
+				color: var(--foot-ink);
+				font-weight: 600;
 			}
 
 			.footer-inner {
 				max-width: var(--wide-width);
 				margin: 0 auto;
 				padding: var(--section-y) var(--page-gutter) var(--spacing-8);
+				background: var(--color-bg);
 			}
 
 			.footer-grid {
@@ -862,6 +1011,18 @@ const isLoggedIn = !!Astro.locals.user;
 			.footer-brand {
 				max-width: none;
 				padding-right: var(--spacing-8);
+			}
+
+			.footer-frog-figure {
+				margin: 0;
+				max-width: 240px;
+			}
+
+			.footer-frog {
+				width: 100%;
+				height: auto;
+				display: block;
+				filter: drop-shadow(0 18px 28px rgba(20, 35, 22, 0.28));
 			}
 
 			.footer-logo {
@@ -898,10 +1059,10 @@ const isLoggedIn = !!Astro.locals.user;
 			.footer-heading {
 				font-family: var(--font-mono);
 				font-size: var(--font-size-kicker);
-				font-weight: 600;
+				font-weight: 700;
 				text-transform: uppercase;
 				letter-spacing: var(--tracking-eyebrow);
-				color: var(--color-muted);
+				color: var(--color-text);
 				margin-bottom: var(--spacing-4);
 			}
 
@@ -926,57 +1087,36 @@ const isLoggedIn = !!Astro.locals.user;
 
 			.footer-bottom {
 				display: flex;
-				justify-content: space-between;
+				justify-content: center;
 				align-items: center;
-				padding-top: var(--spacing-6);
-				border-top: 1px solid var(--color-border);
+				flex-wrap: wrap;
+				column-gap: var(--spacing-4);
+				row-gap: var(--spacing-2);
+				padding: var(--spacing-6) var(--page-gutter);
+				background: color-mix(in srgb, var(--color-brand) 60%, #141513);
 			}
 
 			.footer-copyright {
+				margin: 0;
 				font-size: var(--font-size-sm);
-				color: var(--color-muted);
+				color: #f4f3ef;
 			}
 
-			.footer-copyright a {
-				color: var(--color-text-secondary);
+			.footer-sep {
+				color: color-mix(in srgb, #f4f3ef 45%, transparent);
 			}
 
-			/* Theme switcher */
-			.theme-switcher {
-				display: flex;
-				gap: var(--spacing-1);
-				padding: var(--spacing-1);
-				background: var(--color-surface);
-				border-radius: var(--radius);
+			.footer-legal-link {
+				font-size: var(--font-size-sm);
+				color: #f4f3ef;
+				text-decoration: none;
+				transition: color 0.3s ease;
 			}
 
-			.theme-btn {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				width: 32px;
-				height: 28px;
-				background: transparent;
-				border: none;
-				color: var(--color-muted);
-				border-radius: var(--radius);
-				cursor: pointer;
-				transition: all var(--transition-fast);
-			}
-
-			.theme-btn:hover {
-				color: var(--color-text-secondary);
-			}
-
-			.theme-btn.active {
-				background: var(--color-bg);
-				color: var(--color-text);
-				box-shadow: var(--shadow-sm);
-			}
-
-			.theme-btn svg {
-				width: 16px;
-				height: 16px;
+			.footer-legal-link:hover {
+				color: #fff;
+				text-decoration: underline;
+				text-underline-offset: 3px;
 			}
 
 		@media (max-width: 900px) {
@@ -988,6 +1128,14 @@ const isLoggedIn = !!Astro.locals.user;
 			.footer-brand {
 				padding-right: 0;
 			}
+
+			.foot-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.foot-map iframe {
+				aspect-ratio: 16 / 10;
+			}
 		}
 
 		@media (max-width: 640px) {
@@ -995,17 +1143,19 @@ const isLoggedIn = !!Astro.locals.user;
 				grid-template-columns: 1fr;
 			}
 
-				.footer-brand {
-					grid-column: span 1;
-				}
-
-				.footer-bottom {
-					flex-direction: column;
-					gap: var(--spacing-4);
-					text-align: center;
-				}
+			.foot-logos {
+				grid-template-columns: repeat(2, 1fr);
 			}
-		</style>
+
+			.foot-logos a {
+				min-height: 88px;
+			}
+
+			.footer-brand {
+				grid-column: span 1;
+			}
+		}
+	</style>
 
 	<script>
 		// Header navigation only: mobile toggle, dropdown toggles,
@@ -1060,3 +1210,4 @@ const isLoggedIn = !!Astro.locals.user;
 		<EmDashBodyEnd page={pageCtx} />
 	</body>
 </html>
+

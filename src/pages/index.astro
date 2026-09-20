@@ -1,7 +1,6 @@
 ---
 import { getEmDashEntry, getEmDashCollection, getSiteSettings } from "emdash";
 import Base from "../layouts/Base.astro";
-import PostCard from "../components/PostCard.astro";
 import { getReadingTime } from "../utils/reading-time";
 import { resolveBlogSiteIdentity } from "../utils/site-identity";
 
@@ -230,64 +229,110 @@ const foundCtas = resolveCta(null);
 		</div>
 	</header>
 
-		<!-- 02 · The system behind predictable growth -->
-		{
-			system.pillars.length > 0 && (
+	<!-- 02 · Breakthroughs video (latest WordPress content) -->
+	{
+		(
 			<section class="section system">
 				<div class="section-head">
-					<span class="eyebrow">01</span>
 					<h2 class="section-title system-title">How I Find CRO Breakthroughs Again and Again</h2>
 				</div>
-					<div class="system-grid">
-						{system.pillars.map((pillar, i) => (
-							<article class="pillar">
-								<div class="pillar-frame">
-									<span class="pillar-index">{String(i + 1).padStart(2, "0")}</span>
-									{
-										pillar.image.url && (
-											<img
-												src={pillar.image.url}
-												width={pillar.image.width}
-												height={pillar.image.height}
-												alt={pillar.image.alt}
-												loading="lazy"
-												class="pillar-diagram"
-											/>
-										)
-									}
-								</div>
-								<h3 class="pillar-title">{pillar.title}</h3>
-								<p class="pillar-desc">{pillar.description}</p>
-								<ul class="pillar-items">
-									{pillar.items.map((item) => (
-										<li class="pillar-item">{item}</li>
-									))}
-								</ul>
-								{
-									pillar.cta && (
-										<a class="pillar-cta" href={resolveCta(pillar.cta).href}>
-											{pillar.cta.label}
-										</a>
-									)
-								}
-							</article>
-						))}
-					</div>
-				</section>
-			)
-		}
+				<figure class="system-video">
+					<iframe
+						title="How I Find CRO Breakthroughs Again and Again"
+						width="720"
+						height="540"
+						src="https://www.youtube.com/embed/STouQwJZ4bY?feature=oembed"
+						loading="lazy"
+						frameborder="0"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						referrerpolicy="strict-origin-when-cross-origin"
+						allowfullscreen
+					></iframe>
+				</figure>
+			</section>
+		)
+	}
 
 		<!-- 03 · About Founders -->
-		{
-			founders.people.length > 0 && (
-				<section class="section founders">
-					<div class="section-head">
-						<span class="eyebrow">02</span>
-						<h2 class="section-title">{founders.title}</h2>
+	<!-- 03 · How Partners Review Us -->
+	{
+		reviews.images.length > 0 && (
+			<section class="section reviews">
+				<div class="section-head reviews-head">
+					<h2 class="section-title">How Partners Review Us</h2>
+				</div>
+				<div class="reviews-grid">
+					<div class="reviews-col">
+						{reviews.images
+							.filter((_, i) => [0, 3, 8].includes(i))
+							.map((img) => (
+								<figure
+									class="review-fig"
+									tabindex="0"
+									role="button"
+									aria-label="Enlarge review image"
+								>
+									<img
+										src={img.url}
+										width={img.width}
+										height={img.height}
+										alt={img.alt || "Client review"}
+										loading="lazy"
+										class="review-short"
+									/>
+								</figure>
+							))}
 					</div>
-					<div class="founders-grid">
-						{founders.people.map((person) => (
-							<article class="founder">
+					<div class="reviews-col">
+						{reviews.images
+							.filter((_, i) => ![0, 3, 8].includes(i))
+							.map((img) => (
+								<figure
+									class="review-fig"
+									tabindex="0"
+									role="button"
+									aria-label="Enlarge review image"
+								>
+									<img
+										src={img.url}
+										width={img.width}
+										height={img.height}
+										alt={img.alt || "Client review"}
+										loading="lazy"
+										class="review-short"
+									/>
+								</figure>
+							))}
+					</div>
+				</div>
+				<div class="review-lightbox" aria-hidden="true">
+					<div class="review-lightbox-backdrop" data-close></div>
+					<figure class="review-lightbox-fig">
+						<img class="review-lightbox-img" alt="" />
+						<button
+							type="button"
+							class="review-lightbox-close"
+							aria-label="Close enlarged view"
+						>
+							×
+						</button>
+					</figure>
+				</div>
+			</section>
+		)
+	}
+
+	<!-- 04 · About Founders (moved down; eyebrow number dropped as obsolete) -->
+	{
+		founders.people.length > 0 && (
+			<section class="section founders">
+				<div class="section-head">
+					<h2 class="section-title">About Us</h2>
+				</div>
+				<div class="founders-grid">
+					{founders.people.map((person, idx) => (
+						<article class={idx === 1 ? "founder founder-mirror" : "founder"}>
+							<div class="founder-side">
 								{
 									person.image.url && (
 										<figure class="founder-figure">
@@ -304,76 +349,114 @@ const foundCtas = resolveCta(null);
 								}
 								<h3 class="founder-name">{person.name}</h3>
 								<p class="founder-role">{person.role}</p>
-								<p class="founder-bio">{person.bio}</p>
-							</article>
-						))}
-					</div>
-				</section>
-			)
-		}
-
-		<!-- 04 · How Others Reviewed 99Ways -->
-		{
-			reviews.images.length > 0 && (
-				<section class="section reviews">
-					<div class="section-head">
-						<span class="eyebrow">03</span>
-						<h2 class="section-title">{reviews.title}</h2>
-					</div>
-					<div class="reviews-grid">
-						{reviews.images.map((img, i) => (
-							<figure class="review-fig">
-								<img
-									src={img.url}
-									width={img.width}
-									height={img.height}
-									alt={img.alt || "Client review"}
-									loading="lazy"
-									class="review-short"
-								/>
-							</figure>
-						))}
-					</div>
-				</section>
-			)
-		}
+							</div>
+							<p class="founder-bio">{person.bio}</p>
+						</article>
+					))}
+				</div>
+			</section>
+		)
+	}
 
 		<!-- 05 · Latest from 99Ways Academy -->
 		{
 			academy.title && (
 				<section class="section academy">
 					<div class="section-head">
-						<span class="eyebrow">04</span>
-						<h2 class="section-title">{academy.title}</h2>
-						{
-							academy.viewAll && (
-								<a class="section-link" href={academy.viewAll}>View all posts</a>
-							)
-						}
+						<h2 class="section-title academy-title">{academy.title}</h2>
 					</div>
 					{
 						posts.length === 0 ? (
 							<p class="home-empty">No posts have been published yet.</p>
 						) : (
 							<div class="academy-grid">
-								{posts.map((post) => (
-									<PostCard
-										title={post.data.title ?? "Untitled"}
-										excerpt={post.data.excerpt}
-										featuredImage={post.data.featured_image}
-										href={`/posts/${post.id}`}
-										date={post.data.publishedAt ?? undefined}
-										readingTime={getReadingTime(post.data.content)}
-										tags={(post.data.terms?.tag ?? []).map((t) => ({
-											slug: t.slug,
-											label: t.label,
-										}))}
-										bylines={post.data.bylines ?? []}
-									/>
-								))}
+								{posts.map((post) => {
+									const category = post.data.terms?.category?.[0];
+									const featured = post.data.featured_image;
+									const imageUrl =
+										typeof featured === "string"
+											? featured
+											: featured?.meta?.storageKey
+												? `/_emdash/api/media/file/${featured.meta.storageKey}`
+												: null;
+									const href = `/posts/${post.id}`;
+									const published = post.data.publishedAt
+										? new Date(post.data.publishedAt)
+										: null;
+									const dateLabel = published
+										? published.toLocaleDateString("en-US", {
+												year: "numeric",
+												month: "short",
+												day: "numeric",
+											})
+										: null;
+									const minutes = getReadingTime(post.data.content);
+									return (
+										<article class="ac-card">
+											{imageUrl && (
+												<a
+													href={href}
+													class="ac-media"
+													tabindex="-1"
+													aria-hidden="true"
+												>
+													<img
+														src={imageUrl}
+														alt=""
+														loading="lazy"
+														class="ac-img"
+													/>
+												</a>
+											)}
+											<div class="ac-body">
+												<p class="ac-meta">
+													{category && (
+														<>
+															<a
+																class="ac-cat"
+																href={`/category/${category.slug}`}
+															>
+																{category.label}
+															</a>
+															<span class="ac-dot" aria-hidden="true" />
+														</>
+													)}
+													{dateLabel && <span>{dateLabel}</span>}
+													{minutes ? (
+														<>
+															<span class="ac-dot" aria-hidden="true" />
+															<span>{minutes} min read</span>
+														</>
+													) : null}
+												</p>
+												<h3 class="ac-title">
+													<a href={href} class="ac-title-link">
+														{post.data.title ?? "Untitled"}
+													</a>
+												</h3>
+												{post.data.excerpt && (
+													<p class="ac-excerpt">{post.data.excerpt}</p>
+												)}
+												<span class="ac-cta">
+													Read article
+													<span class="ac-arrow" aria-hidden="true">
+														→
+													</span>
+												</span>
+											</div>
+										</article>
+									);
+								})}
 							</div>
 						)
 					}
+					{academy.viewAll && (
+						<div class="ac-more">
+							<a class="ac-more-btn" href={academy.viewAll}>
+								View all posts
+							</a>
+						</div>
+					)}
 				</section>
 			)
 		}
@@ -485,6 +568,108 @@ const foundCtas = resolveCta(null);
 			hovT.b = 1;
 			hovT.s = 1;
 			kick();
+		});
+	})();
+</script>
+
+<script>
+	// Reviews lightbox: click (or Enter/Space) a review to enlarge it in a
+	// modal overlay; close via the button, backdrop, or Escape.
+	(function () {
+		var section = document.querySelector(".reviews");
+		if (!section) return;
+		var overlay = section.querySelector(".review-lightbox");
+		if (!overlay) return;
+		var img = overlay.querySelector(".review-lightbox-img");
+		var closeBtn = overlay.querySelector(".review-lightbox-close");
+		var lastFocus = null;
+		function open(src, alt) {
+			lastFocus = document.activeElement;
+			img.src = src;
+			img.alt = alt || "Client review enlarged";
+			overlay.classList.add("open");
+			overlay.setAttribute("aria-hidden", "false");
+			document.documentElement.style.overflow = "hidden";
+			if (closeBtn) closeBtn.focus();
+		}
+		function close() {
+			overlay.classList.remove("open");
+			overlay.setAttribute("aria-hidden", "true");
+			document.documentElement.style.overflow = "";
+			if (lastFocus && lastFocus.focus) lastFocus.focus();
+		}
+		function openFromFigure(fig) {
+			var source = fig.querySelector("img");
+			if (!source) return;
+			open(source.currentSrc || source.src, source.alt);
+		}
+		section.querySelectorAll(".review-fig").forEach(function (fig) {
+			fig.addEventListener("click", function () {
+				openFromFigure(fig);
+			});
+			fig.addEventListener("keydown", function (e) {
+				if (e.key === "Enter" || e.key === " ") {
+					e.preventDefault();
+					openFromFigure(fig);
+				}
+			});
+		});
+		overlay.addEventListener("click", function (e) {
+			if (e.target.closest("[data-close]") || e.target.closest(".review-lightbox-close")) {
+				close();
+			}
+		});
+		document.addEventListener("keydown", function (e) {
+			if (e.key === "Escape" && overlay.classList.contains("open")) {
+				close();
+			}
+		});
+	})();
+</script>
+
+<script>
+	// Founders portrait parallax: each portrait drifts subtly toward the
+	// cursor while its card is hovered, then eases back to rest.
+	(function () {
+		var grid = document.querySelector(".founders-grid");
+		if (!grid) return;
+		if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+		var states = [];
+		var raf = 0;
+		function tick() {
+			var moving = false;
+			states.forEach(function (st) {
+				st.cx += (st.tx - st.cx) * 0.12;
+				st.cy += (st.ty - st.cy) * 0.12;
+				if (Math.abs(st.tx - st.cx) > 0.05 || Math.abs(st.ty - st.cy) > 0.05) {
+					moving = true;
+				}
+				st.portrait.style.setProperty("--fp-x", st.cx.toFixed(1) + "px");
+				st.portrait.style.setProperty("--fp-y", st.cy.toFixed(1) + "px");
+			});
+			raf = moving ? requestAnimationFrame(tick) : 0;
+		}
+		function kick() {
+			if (!raf) raf = requestAnimationFrame(tick);
+		}
+		grid.querySelectorAll(".founder").forEach(function (card) {
+			var portrait = card.querySelector(".founder-portrait");
+			if (!portrait) return;
+			var st = { portrait: portrait, tx: 0, ty: 0, cx: 0, cy: 0 };
+			states.push(st);
+			card.addEventListener("pointermove", function (e) {
+				var r = portrait.getBoundingClientRect();
+				var nx = (e.clientX - (r.left + r.width / 2)) / r.width;
+				var ny = (e.clientY - (r.top + r.height / 2)) / r.height;
+				st.tx = Math.max(-0.5, Math.min(0.5, nx)) * 14;
+				st.ty = Math.max(-0.5, Math.min(0.5, ny)) * 12;
+				kick();
+			});
+			card.addEventListener("pointerleave", function () {
+				st.tx = 0;
+				st.ty = 0;
+				kick();
+			});
 		});
 	})();
 </script>
@@ -795,29 +980,26 @@ const foundCtas = resolveCta(null);
 		border-color: var(--color-brand-hover);
 	}
 
-	/* ---------- System band (graphite + glow, palette only) ---------- */
+	/* ---------- System band (lighter continuation of hero palette) ---------- */
 	.system {
-		--sys-ink: var(--color-bg);
-		--sys-soft: color-mix(in srgb, var(--color-bg) 74%, var(--color-text));
-		--sys-line: color-mix(in srgb, var(--color-bg) 16%, transparent);
-		--sys-card: color-mix(in srgb, var(--color-bg) 5%, transparent);
 		position: relative;
 		background:
 			radial-gradient(
 				48rem 26rem at 85% 10%,
-				color-mix(in srgb, var(--color-success) 14%, transparent),
+				color-mix(in srgb, var(--color-success) 12%, transparent),
 				transparent 62%
 			),
 			radial-gradient(
 				38rem 24rem at 6% 92%,
-				color-mix(in srgb, var(--color-brand) 12%, transparent),
+				color-mix(in srgb, var(--color-brand) 10%, transparent),
 				transparent 60%
 			),
-			var(--color-text);
+			color-mix(in srgb, var(--color-bg) 84%, #fff);
 	}
 
-	.system .eyebrow {
-		color: var(--sys-soft);
+	.system .section-head {
+		display: block;
+		max-width: 980px;
 	}
 
 	.system-title {
@@ -827,177 +1009,183 @@ const foundCtas = resolveCta(null);
 		line-height: 1.08;
 		letter-spacing: -0.01em;
 		text-wrap: balance;
-		color: var(--sys-ink);
+		color: var(--color-text);
 		max-width: 22ch;
 	}
 
-	.system .pillar-title {
-		color: var(--sys-ink);
+	@media (min-width: 900px) {
+		.system-title {
+			max-width: none;
+			white-space: nowrap;
+		}
 	}
 
-	.system .pillar-desc {
-		color: var(--sys-soft);
+	.system-video {
+		max-width: 980px;
+		margin: 0 auto;
 	}
 
-	.system .pillar-items {
-		border-top-color: var(--sys-line);
+	.system-video iframe {
+		display: block;
+		width: 100%;
+		aspect-ratio: 16 / 9;
+		height: auto;
+		border: 0;
+		border-radius: var(--radius-lg);
+		background: #000;
+		box-shadow:
+			0 32px 80px -32px color-mix(in srgb, var(--color-success) 45%, transparent),
+			var(--shadow-lg);
 	}
 
-	.system .pillar-item {
-		color: var(--sys-soft);
-		border-bottom-color: var(--sys-line);
+	/* ---------- Founders ---------- */
+	.founders {
+		position: relative;
+		background:
+			linear-gradient(
+				color-mix(in srgb, var(--color-success) 7%, transparent),
+				transparent 42%
+			),
+			radial-gradient(
+				36rem 20rem at 90% 100%,
+				color-mix(in srgb, var(--color-brand) 7%, transparent),
+				transparent 60%
+			),
+			var(--color-bg);
 	}
 
-	.system .pillar-item::before {
-		color: var(--color-success);
-	}
-
-	.system .pillar-frame {
-		border-color: var(--sys-line);
-		background: var(--sys-card);
-	}
-
-	.system .pillar-index {
-		color: var(--sys-ink);
-		background: var(--sys-card);
-		border-color: var(--sys-line);
-	}
-
-	.system .pillar-cta {
-		color: var(--sys-ink);
-		border-bottom-color: var(--color-success);
-	}
-
-	.system .pillar-cta:hover {
-		color: var(--sys-ink);
-		border-bottom-color: var(--sys-ink);
-	}
-
-	/* ---------- System / pillars ---------- */
-	.system-grid {
+	.founders-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: 1fr;
 		gap: var(--spacing-8);
 		max-width: var(--wide-width);
 		margin: 0 auto;
 	}
 
-	.pillar {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.pillar-frame {
+	.founder {
 		position: relative;
-		width: 100%;
-		border: 1px solid var(--color-border);
-		background: var(--color-bg-subtle);
-		margin-bottom: var(--spacing-6);
-		overflow: hidden;
-	}
-
-	.pillar-index {
-		position: absolute;
-		top: var(--spacing-2);
-		left: var(--spacing-3);
-		font-family: var(--font-mono);
-		font-size: var(--font-size-kicker);
-		font-weight: 600;
-		letter-spacing: var(--tracking-eyebrow);
-		color: var(--color-brand);
-		background: var(--color-bg);
-		padding: 2px 6px;
-		border: 1px solid var(--color-border);
-	}
-
-	.pillar-diagram {
-		width: 100%;
-		height: auto;
-		aspect-ratio: 478 / 327;
-		object-fit: contain;
-		background: var(--color-bg-subtle);
-	}
-
-	.pillar-title {
-		font-size: var(--font-size-xl);
-		margin-bottom: var(--spacing-3);
-	}
-
-	.pillar-desc {
-		font-size: var(--font-size-base);
-		line-height: var(--leading-relaxed);
-		color: var(--color-text-secondary);
-		margin-bottom: var(--spacing-5);
-	}
-
-	.pillar-items {
-		list-style: none;
-		padding: 0;
-		margin: 0 0 var(--spacing-5);
-		border-top: 1px solid var(--color-border-subtle);
-	}
-
-	.pillar-item {
-		display: flex;
-		align-items: baseline;
-		gap: var(--spacing-3);
-		padding: var(--spacing-3) 0;
-		border-bottom: 1px solid var(--color-border-subtle);
-		font-size: var(--font-size-sm);
-		color: var(--color-text);
-	}
-
-	.pillar-item::before {
-		content: "＋";
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		color: var(--color-brand);
-		flex-shrink: 0;
-	}
-
-	.pillar-cta {
-		margin-top: auto;
-		font-family: var(--font-mono);
-		font-size: var(--font-size-sm);
-		font-weight: 600;
-		color: var(--color-brand);
-		text-decoration: none;
-		padding-bottom: 2px;
-		border-bottom: 1px solid var(--color-brand);
-		align-self: flex-start;
-	}
-
-	.pillar-cta:hover {
-		color: var(--color-brand-hover);
-		border-color: var(--color-brand-hover);
-	}
-
-	/* ---------- Founders ---------- */
-	.founders-grid {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: var(--spacing-16) var(--spacing-12);
-		max-width: var(--wide-width);
-		margin: 0 auto;
+		grid-template-columns: auto minmax(0, 1fr);
+		gap: var(--spacing-8);
+		align-items: center;
+		padding: var(--spacing-8);
+		border: 1px solid var(--color-border-subtle);
+		border-radius: var(--radius-lg);
+		background: var(--color-surface);
+		overflow: hidden;
+		transition:
+			border-color 0.4s ease,
+			transform 0.45s cubic-bezier(0.22, 0.9, 0.28, 1),
+			box-shadow 0.45s cubic-bezier(0.22, 0.9, 0.28, 1),
+			background 0.4s ease;
+	}
+
+	.founder-mirror {
+		background: var(--color-bg-subtle);
+		display: flex;
+		align-items: start;
+	}
+
+	.founder::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 3px;
+		background: linear-gradient(90deg, var(--color-success), var(--color-brand));
+		transform: scaleX(0);
+		transform-origin: left center;
+		transition: transform 0.5s cubic-bezier(0.22, 0.9, 0.28, 1);
+	}
+
+	.founder::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			105deg,
+			transparent 40%,
+			color-mix(in srgb, #fff 7%, transparent) 50%,
+			transparent 60%
+		);
+		transform: translateX(-110%);
+		transition: transform 0.7s ease;
+		pointer-events: none;
+	}
+
+	.founder:hover {
+		transform: translateY(-3px);
+		border-color: color-mix(in srgb, var(--color-success) 40%, var(--color-border));
+		box-shadow:
+			0 28px 60px -28px color-mix(in srgb, var(--color-success) 45%, transparent),
+			var(--shadow-lg);
+	}
+
+	.founder:hover::before {
+		transform: scaleX(1);
+	}
+
+	.founder:hover::after {
+		transform: translateX(110%);
+	}
+
+	.founder-mirror .founder-side {
+		order: 2;
+		flex: 0 0 auto;
+		align-items: flex-end;
+		text-align: right;
+	}
+
+	.founder-mirror .founder-bio {
+		order: 1;
+		flex: 1 1 auto;
+		min-width: 0;
+		align-self: center;
 	}
 
 	.founder-figure {
-		margin: 0 0 var(--spacing-6);
-		aspect-ratio: 4 / 5;
-		overflow: hidden;
-		border: 1px solid var(--color-border);
-		background: var(--color-bg-subtle);
+		margin: 0;
+		width: 148px;
 	}
 
 	.founder-portrait {
-		width: 100%;
-		height: 100%;
+		width: 148px;
+		height: 148px;
+		border-radius: 50%;
 		object-fit: cover;
-		filter: saturate(0.92);
+		display: block;
+		border: 1px solid var(--color-border);
+		box-shadow:
+			0 0 0 6px color-mix(in srgb, var(--color-success) 14%, transparent),
+			var(--shadow-sm);
+		translate: var(--fp-x, 0px) var(--fp-y, 0px);
+		transition:
+			filter 0.4s ease,
+			box-shadow 0.4s ease;
+	}
+
+	.founder:hover .founder-portrait {
+		filter: brightness(1.06) saturate(1.05);
+		box-shadow:
+			0 0 0 9px color-mix(in srgb, var(--color-success) 26%, transparent),
+			var(--shadow-lg);
+	}
+
+	.founder-side {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: var(--spacing-3);
+		min-width: 0;
 	}
 
 	.founder-name {
-		font-size: var(--font-size-display);
+		font-family: var(--font-section);
+		font-size: 1.75rem;
+		font-weight: 600;
+		letter-spacing: 0.01em;
+		text-transform: uppercase;
 		margin-bottom: var(--spacing-2);
 	}
 
@@ -1008,7 +1196,7 @@ const foundCtas = resolveCta(null);
 		letter-spacing: var(--tracking-eyebrow);
 		text-transform: uppercase;
 		color: var(--color-brand);
-		margin-bottom: var(--spacing-6);
+		margin-bottom: var(--spacing-4);
 		white-space: pre-line;
 	}
 
@@ -1016,15 +1204,66 @@ const foundCtas = resolveCta(null);
 		font-size: var(--font-size-base);
 		line-height: var(--leading-relaxed);
 		color: var(--color-text-secondary);
-		max-width: 56ch;
+		max-width: none;
+		transition: transform 0.45s cubic-bezier(0.22, 0.9, 0.28, 1);
+	}
+
+	.founder:first-child:hover .founder-bio {
+		transform: translateX(-4px);
+	}
+
+	.founder-mirror:hover .founder-bio {
+		transform: translateX(4px);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.founder,
+		.founder::before,
+		.founder::after,
+		.founder-bio,
+		.founder-portrait {
+			transition: none;
+		}
 	}
 
 	/* ---------- Reviews ---------- */
+	.reviews {
+		position: relative;
+		background:
+			radial-gradient(
+				46rem 24rem at 12% 8%,
+				color-mix(in srgb, var(--color-success) 10%, transparent),
+				transparent 60%
+			),
+			radial-gradient(
+				40rem 22rem at 88% 95%,
+				color-mix(in srgb, var(--color-brand) 8%, transparent),
+				transparent 60%
+			),
+			var(--color-bg);
+	}
+
+	.reviews-head {
+		max-width: var(--wide-width);
+		margin-inline: auto;
+	}
+
 	.reviews-grid {
-		columns: 3;
-		column-gap: var(--spacing-6);
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--spacing-6);
+		align-items: stretch;
 		max-width: var(--wide-width);
 		margin: 0 auto;
+	}
+
+	.reviews-col {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: var(--spacing-6);
+		min-width: 0;
+		min-height: 0;
 	}
 
 	.review-fig {
@@ -1032,15 +1271,30 @@ const foundCtas = resolveCta(null);
 		break-inside: avoid;
 		padding: var(--spacing-3);
 		border: 1px solid var(--color-border);
-		background: var(--color-bg-subtle);
+		border-radius: var(--radius-lg);
+		background: var(--color-bg);
+		box-shadow: 0 10px 28px -18px color-mix(in srgb, var(--color-success) 30%, transparent);
 		transition:
 			border-color var(--transition-base),
-			transform var(--transition-base);
+			transform var(--transition-base),
+			box-shadow var(--transition-base);
 	}
 
 	.review-fig:hover {
-		border-color: var(--color-border);
-		transform: translateY(-2px);
+		transform: translateY(-3px);
+		border-color: color-mix(in srgb, var(--color-success) 45%, var(--color-border));
+		box-shadow:
+			0 26px 54px -22px color-mix(in srgb, var(--color-success) 50%, transparent),
+			var(--shadow-lg);
+	}
+
+	.review-fig {
+		cursor: zoom-in;
+	}
+
+	.review-fig:focus-visible {
+		outline: 2px solid var(--color-success);
+		outline-offset: 3px;
 	}
 
 	.review-short {
@@ -1049,13 +1303,317 @@ const foundCtas = resolveCta(null);
 		border-radius: 2px;
 	}
 
+	/* ---------- Reviews lightbox ---------- */
+	.review-lightbox {
+		position: fixed;
+		inset: 0;
+		z-index: 300;
+		display: grid;
+		place-items: center;
+		padding: 4vmin;
+		visibility: hidden;
+		opacity: 0;
+		transition:
+			opacity 0.3s ease,
+			visibility 0.3s;
+	}
+
+	.review-lightbox.open {
+		visibility: visible;
+		opacity: 1;
+	}
+
+	.review-lightbox-backdrop {
+		position: absolute;
+		inset: 0;
+		background: color-mix(in srgb, #141513 82%, transparent);
+		backdrop-filter: blur(6px);
+		-webkit-backdrop-filter: blur(6px);
+	}
+
+	.review-lightbox-fig {
+		position: relative;
+		margin: 0;
+		max-width: min(92vw, 1000px);
+		transform: translateY(10px) scale(0.97);
+		transition: transform 0.35s cubic-bezier(0.22, 0.9, 0.28, 1);
+	}
+
+	.review-lightbox.open .review-lightbox-fig {
+		transform: none;
+	}
+
+	.review-lightbox-img {
+		display: block;
+		width: auto;
+		max-width: 100%;
+		max-height: 84vh;
+		margin: 0 auto;
+		border-radius: var(--radius-lg);
+		background: #fff;
+		box-shadow:
+			0 40px 100px -30px color-mix(in srgb, var(--color-success) 40%, transparent),
+			var(--shadow-lg);
+	}
+
+	.review-lightbox-close {
+		position: absolute;
+		top: -52px;
+		right: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		border: 1px solid color-mix(in srgb, #fff 25%, transparent);
+		background: color-mix(in srgb, #141513 70%, transparent);
+		color: #fff;
+		font-size: 1.25rem;
+		line-height: 1;
+		cursor: pointer;
+		transition:
+			background var(--transition-base),
+			transform var(--transition-base);
+	}
+
+	.review-lightbox-close:hover {
+		background: var(--color-success);
+		border-color: var(--color-success);
+		transform: scale(1.06);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.review-lightbox,
+		.review-lightbox-fig {
+			transition: none;
+		}
+	}
+
 	/* ---------- Academy ---------- */
+	.academy {
+		position: relative;
+		background:
+			radial-gradient(
+				50rem 26rem at 88% 0%,
+				color-mix(in srgb, var(--color-success) 12%, transparent),
+				transparent 60%
+			),
+			radial-gradient(
+				40rem 24rem at 8% 100%,
+				color-mix(in srgb, var(--color-brand) 10%, transparent),
+				transparent 60%
+			),
+			color-mix(in srgb, var(--color-bg) 42%, var(--color-text));
+	}
+
+	.academy .section-head {
+		justify-content: center;
+		text-align: center;
+	}
+
+	.academy-title {
+		font-family: var(--font-hero);
+		font-size: clamp(2.25rem, 1.5rem + 3vw, 3.5rem);
+		font-weight: 600;
+		line-height: 1.05;
+		letter-spacing: -0.02em;
+		text-wrap: balance;
+		text-align: center;
+		color: var(--color-bg);
+		max-width: 20ch;
+		margin-inline: auto;
+	}
+
+	@media (min-width: 900px) {
+		.academy-title {
+			max-width: none;
+			white-space: nowrap;
+		}
+	}
+
 	.academy-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		gap: var(--spacing-10) var(--spacing-8);
+		gap: var(--spacing-8);
 		max-width: var(--wide-width);
 		margin: 0 auto;
+	}
+
+	.ac-card {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		background: var(--color-bg);
+		color: var(--color-text);
+		border: 1px solid color-mix(in srgb, var(--color-bg) 14%, transparent);
+		border-radius: 12px;
+		overflow: hidden;
+		transition:
+			transform 0.35s cubic-bezier(0.22, 0.9, 0.28, 1),
+			box-shadow 0.35s cubic-bezier(0.22, 0.9, 0.28, 1),
+			border-color 0.35s ease;
+	}
+
+	.ac-card:hover {
+		transform: translateY(-4px);
+		border-color: color-mix(in srgb, var(--color-success) 55%, transparent);
+		box-shadow:
+			0 30px 60px -24px color-mix(in srgb, #000 55%, transparent),
+			0 18px 44px -20px color-mix(in srgb, var(--color-success) 40%, transparent);
+	}
+
+	.ac-media {
+		display: block;
+		aspect-ratio: 16 / 9;
+		overflow: hidden;
+		background: var(--color-surface);
+	}
+
+	.ac-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transition: transform 0.5s cubic-bezier(0.22, 0.9, 0.28, 1);
+	}
+
+	.ac-card:hover .ac-img {
+		transform: scale(1.06);
+	}
+
+	.ac-body {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-3);
+		padding: var(--spacing-6);
+		flex: 1;
+	}
+
+	.ac-meta {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: var(--spacing-2);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-kicker);
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--color-muted);
+	}
+
+	.ac-cat {
+		position: relative;
+		z-index: 2;
+		color: var(--color-success);
+		font-weight: 700;
+		text-decoration: none;
+	}
+
+	.ac-cat:hover {
+		text-decoration: underline;
+	}
+
+	.ac-dot {
+		width: 3px;
+		height: 3px;
+		border-radius: 50%;
+		background: var(--color-muted);
+	}
+
+	.ac-title {
+		font-family: var(--font-hero);
+		font-size: 1.35rem;
+		font-weight: 600;
+		line-height: 1.25;
+		letter-spacing: -0.01em;
+		text-wrap: pretty;
+	}
+
+	.ac-title-link {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.ac-title-link::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+	}
+
+	.ac-excerpt {
+		font-size: var(--font-size-base);
+		line-height: var(--leading-relaxed);
+		color: var(--color-text-secondary);
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.ac-cta {
+		margin-top: auto;
+		padding-top: var(--spacing-3);
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-2);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: var(--color-muted);
+		transition: color 0.3s ease;
+	}
+
+	.ac-arrow {
+		color: var(--color-success);
+		transition: transform 0.3s cubic-bezier(0.22, 0.9, 0.28, 1);
+	}
+
+	.ac-card:hover .ac-cta {
+		color: var(--color-text);
+	}
+
+	.ac-card:hover .ac-arrow {
+		transform: translateX(5px);
+	}
+
+	.ac-more {
+		max-width: var(--wide-width);
+		margin: var(--spacing-12) auto 0;
+		display: flex;
+		justify-content: center;
+	}
+
+	.ac-more-btn {
+		display: inline-flex;
+		align-items: center;
+		padding: 0.9rem 2.25rem;
+		border-radius: 10px;
+		border: 1px solid color-mix(in srgb, var(--color-bg) 35%, transparent);
+		color: var(--color-bg);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		text-decoration: none;
+		transition:
+			background 0.3s ease,
+			color 0.3s ease,
+			border-color 0.3s ease,
+			transform 0.3s cubic-bezier(0.22, 0.9, 0.28, 1),
+			box-shadow 0.3s ease;
+	}
+
+	.ac-more-btn:hover {
+		background: var(--color-success);
+		border-color: var(--color-success);
+		color: light-dark(#fff, #10241a);
+		transform: translateY(-2px);
+		box-shadow: 0 18px 36px -16px color-mix(in srgb, var(--color-success) 60%, transparent);
 	}
 
 	.home-empty {
@@ -1084,28 +1642,35 @@ const foundCtas = resolveCta(null);
 			max-width: 20ch;
 		}
 
-		.system-grid,
 		.academy-grid {
 			grid-template-columns: repeat(2, 1fr);
 		}
 
 		.reviews-grid {
-			columns: 2;
+			grid-template-columns: 1fr 1fr;
 		}
 
 		.founders-grid {
 			grid-template-columns: 1fr;
-			gap: var(--spacing-12);
+			gap: var(--spacing-8);
+		}
+
+		.founder {
+			padding: var(--spacing-6);
+			gap: var(--spacing-6);
 		}
 
 		.founder-figure {
-			aspect-ratio: 4 / 5;
-			max-width: 420px;
+			width: 112px;
+		}
+
+		.founder-portrait {
+			width: 112px;
+			height: 112px;
 		}
 	}
 
 	@media (max-width: 600px) {
-		.system-grid,
 		.academy-grid,
 		.reviews-grid {
 			grid-template-columns: 1fr;
@@ -1124,8 +1689,31 @@ const foundCtas = resolveCta(null);
 			margin-bottom: var(--spacing-10);
 		}
 
-		.founder-name {
-			font-size: var(--font-size-section);
+		.founder {
+			grid-template-columns: 1fr;
+			justify-items: start;
+			padding: var(--spacing-6);
+			gap: var(--spacing-5);
+		}
+
+		.founder-mirror {
+			flex-direction: column;
+		}
+
+		.founder-mirror .founder-side {
+			order: 0;
+			align-items: flex-start;
+			text-align: left;
+		}
+
+		.founder-figure {
+			width: 96px;
+		}
+
+		.founder-portrait {
+			width: 96px;
+			height: 96px;
 		}
 	}
 </style>
+

@@ -42,10 +42,10 @@ export default defineConfig({
 		},
 		{
 			provider: fontProviders.google(),
-			name: "Fraunces",
+			name: "Barlow Condensed",
 			cssVariable: "--font-section",
 			weights: [500, 600, 700],
-			fallbacks: ["Georgia", "serif"],
+			fallbacks: ["Arial Narrow", "sans-serif"],
 		},
 		{
 			provider: fontProviders.google(),
@@ -64,3 +64,4 @@ export default defineConfig({
 	],
 	devToolbar: { enabled: false },
 });
+
