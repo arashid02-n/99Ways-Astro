@@ -243,32 +243,32 @@ const isLoggedIn = !!Astro.locals.user;
 						<div class="footer-col">
 							<h4 class="footer-heading">Resources</h4>
 							<ul class="footer-links">
-								<li>Guides and How-tos</li>
-								<li>PostHog Feature Breakdowns</li>
-								<li>Tools Comparison</li>
-								<li>Optimization Experiences</li>
-								<li>Featured Experiments</li>
+								<li><a href="/category/guides-how-to">Guides and How-tos</a></li>
+								<li><a href="/category/posthog-feature-breakdown">PostHog Feature Breakdowns</a></li>
+								<li><a href="/category/tools-comparison">Tools Comparison</a></li>
+								<li><a href="/category/optimization-experience">Optimization Experiences</a></li>
+								<li><a href="/category/featured-experiments">Featured Experiments</a></li>
 							</ul>
 						</div>
 						<div class="footer-col">
 							<h4 class="footer-heading">Services</h4>
 							<ul class="footer-links">
-								<li>PostHog &amp; Product Analytics</li>
-								<li>Hyros &amp; Tracking Setup</li>
-								<li>CRO</li>
+								<li><a href="/posts/hire-posthog-expert-guide">PostHog &amp; Product Analytics</a></li>
+								<li><a href="/posts/hire-hyros-expert-guide">Hyros &amp; Tracking Setup</a></li>
+								<li><a href="/pages/hire-cro-expert">CRO</a></li>
 							</ul>
 						</div>
 						<div class="footer-col">
 							<h4 class="footer-heading">About Us</h4>
 							<ul class="footer-links">
-								<li>Contact Us</li>
-								<li>Iman&#8217;s Upwork</li>
-								<li>Agency&#8217;s Upwork</li>
-								<li>Fiverr</li>
-								<li>GitHub</li>
-								<li>LinkedIn</li>
-								<li>Medium</li>
-								<li>Google Maps</li>
+								<li><a href="/pages/contact-form">Contact Us</a></li>
+								<li><a href="https://upwork.com/freelancers/imannazari" target="_blank" rel="noopener">Iman&#8217;s Upwork</a></li>
+								<li><a href="https://www.upwork.com/agencies/1718792436665155584/" target="_blank" rel="noopener">Agency&#8217;s Upwork</a></li>
+								<li><a href="https://www.fiverr.com/ishto7" target="_blank" rel="noopener">Fiverr</a></li>
+								<li><a href="https://github.com/99ways-io" target="_blank" rel="noopener">GitHub</a></li>
+								<li><a href="https://www.linkedin.com/company/99ways-io/" target="_blank" rel="noopener">LinkedIn</a></li>
+								<li><a href="https://medium.com/nes-stories" target="_blank" rel="noopener">Medium</a></li>
+								<li><a href="https://maps.app.goo.gl/daoBjTCZu7YghnJj9" target="_blank" rel="noopener">Google Maps</a></li>
 							</ul>
 						</div>
 					</div>
@@ -840,7 +840,7 @@ const isLoggedIn = !!Astro.locals.user;
 				margin-bottom: var(--spacing-3);
 			}
 
-			/* Navigation columns render as display-only text (no links) */
+			/* Navigation columns: links styled exactly like the display-only text */
 			.footer-links {
 				list-style: none;
 				margin: 0;
@@ -853,6 +853,15 @@ const isLoggedIn = !!Astro.locals.user;
 				color: var(--color-text-secondary);
 				font-size: var(--text-label-desktop);
 				line-height: var(--leading-label);
+			}
+
+			.footer-links a {
+				color: inherit;
+				text-decoration: none;
+			}
+
+			.footer-links a:hover {
+				color: inherit;
 			}
 
 			/* Social icons below the nav columns: small, restrained (spec 8.2) */
