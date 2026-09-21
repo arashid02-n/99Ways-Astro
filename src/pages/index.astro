@@ -177,13 +177,16 @@ const reviews = [...homeModel.reviews.images].sort((a, b) => {
 });
 
 /*
- * Academy: pin the three approved posts in homepage-spec order.
- * Each entry id is the post slug (entry.id resolves to the slug).
+ * Academy: show the six approved posts (homepage-spec.md 7). Each
+ * entry id is the post slug (entry.id resolves to the slug).
  */
 const ACADEMY_SLUGS = [
 	"health-brand-case-study",
 	"why-experimentation-is-important-for-business",
 	"confidence-vs-posthog",
+	"posthog-implementation",
+	"ab-testing-metrics",
+	"cro-redesign-vs-ab-testing",
 ];
 const academyPosts = ACADEMY_SLUGS.filter((slug) =>
 	posts.some((p) => p.id === slug),
@@ -406,7 +409,7 @@ const viewAllHref = "/pages/academy";
 						)
 					}
 					<div class="ac-more">
-						<a class="btn btn--ghost ac-more-btn" href={viewAllHref}>
+						<a class="btn btn--primary ac-more-btn" href={viewAllHref}>
 							View all posts
 						</a>
 					</div>
@@ -514,7 +517,18 @@ const viewAllHref = "/pages/academy";
 	/* ---------- Hero (design.md 4.2, homepage-spec.md 3) ---------- */
 	.hero {
 		position: relative;
-		background: var(--color-hero-bg);
+		background:
+			radial-gradient(
+				52rem 30rem at 82% 28%,
+				color-mix(in srgb, var(--color-success) 12%, transparent),
+				transparent 65%
+			),
+			radial-gradient(
+				44rem 28rem at 10% 88%,
+				color-mix(in srgb, var(--color-brand) 10%, transparent),
+				transparent 60%
+			),
+			var(--color-hero-bg);
 	}
 
 	.hero-inner {
@@ -593,6 +607,11 @@ const viewAllHref = "/pages/academy";
 		margin-bottom: var(--spacing-10);
 	}
 
+	/* One line on desktop; wraps naturally on smaller screens (spec 4) */
+	.system .section-title {
+		max-width: none;
+	}
+
 	.system-video {
 		max-width: 980px;
 		margin: 0 auto;
@@ -606,11 +625,19 @@ const viewAllHref = "/pages/academy";
 		border: 1px solid var(--color-green-3);
 		border-radius: var(--radius-lg);
 		background: #000;
-		transition: border-color var(--transition-base);
+		box-shadow:
+			0 0 0 1px color-mix(in srgb, var(--color-green-4) 12%, transparent),
+			0 14px 36px -18px color-mix(in srgb, var(--color-green-4) 24%, transparent);
+		transition:
+			border-color var(--transition-base),
+			box-shadow var(--transition-base);
 	}
 
 	.system-video iframe:hover {
 		border-color: var(--color-green-4);
+		box-shadow:
+			0 0 0 1px color-mix(in srgb, var(--color-green-4) 40%, transparent),
+			0 18px 44px -18px color-mix(in srgb, var(--color-green-4) 42%, transparent);
 	}
 
 	/* ---------- Reviews (blue family) ---------- */

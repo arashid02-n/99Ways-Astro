@@ -75,7 +75,12 @@ Link:
 
 `/contact-form/`
 
-The header CTA follows the standard secondary button system unless explicitly changed by the current design implementation.
+The header CTA follows the primary button system from `design.md`:
+
+```text
+Default → Green
+Hover → defined alternate interaction color
+```
 
 ## Sticky Behavior
 
@@ -94,6 +99,22 @@ No white sticky border should appear.
 Use the approved Hero background from `design.md`.
 
 This background is intentionally distinct from the green/blue section families.
+
+It is the restored hero composition: two subtle radial glows (green 12% upper-right, blue 10% lower-left) layered over the `--color-hero-bg` (`#292B2A`) base.
+
+## Composition
+
+The Hero is centered: eyebrow, headline, subheading, and CTA are all centered.
+
+Keep the Hero vertically and horizontally centered.
+
+Do not change the Hero copy.
+
+There is no frog.
+
+There is no mascot.
+
+There is no replacement mascot.
 
 ## Content
 
@@ -124,12 +145,6 @@ Hover → defined alternate interaction color
 
 ## Hero Visual
 
-There is no frog.
-
-There is no mascot.
-
-There is no replacement mascot.
-
 There is no frog animation.
 
 The Hero should remain visually strong through typography, composition, spacing, and the approved Hero background.
@@ -141,6 +156,18 @@ The Hero should remain visually strong through typography, composition, spacing,
 ## Title
 
 `How I Find CRO Breakthroughs Again and Again`
+
+The title must render on a single line on desktop.
+
+Keep the exact wording.
+
+Adjust only typography width/spacing so it fits on one line at desktop widths.
+
+On tablet and mobile, the title is allowed to wrap naturally.
+
+The title must not become disproportionately large.
+
+It must stay within the Section H2 hierarchy from `design.md`.
 
 ## Content
 
@@ -156,13 +183,20 @@ The video should maintain a cinematic, controlled presentation.
 
 ## Styling
 
-Use the active section color family.
+Use the active section color family (green).
 
-The video may have a subtle border/highlight.
+The video has a subtle border/highlight in its normal state (green family).
+
+On hover the highlight is slightly stronger:
+
+* border deepens toward `--color-green-4`
+* a soft green glow (green family) increases subtly
 
 Hover treatment must remain subtle.
 
 Do not introduce unrelated colors.
+
+Do not add scale, extreme glow, or decorative animation.
 
 ---
 
@@ -288,6 +322,8 @@ The section should not contain fabricated or placeholder posts.
 
 ## Current Posts
 
+The homepage shows exactly the six approved posts below, ordered as listed.
+
 ### 1. Story of 74% CVR lift in 6 months for a health brand
 
 URL:
@@ -318,15 +354,37 @@ Category:
 
 `Tools Comparison`
 
-### Additional Content
+### 4. PostHog Implementation for Growth Lever Teams
 
-The following existing content may be available for the broader Academy:
+URL:
 
-* PostHog Implementation for Growth Lever Teams
-* A/B Testing Metrics: Choose the Primary Metric Closest to Profit
-* CRO Redesign vs Ongoing A/B Testing: Which to Start With?
+`/posthog-implementation/`
 
-The homepage should show the approved/latest three posts rather than inventing additional content.
+Category:
+
+`PostHog Feature Breakdowns`
+
+### 5. A/B Testing Metrics: Choose the Primary Metric Closest to Profit
+
+URL:
+
+`/ab-testing-metrics/`
+
+Category:
+
+`Guides and How-tos`
+
+### 6. CRO Redesign vs Ongoing A/B Testing: Which to Start With?
+
+URL:
+
+`/cro-redesign-vs-ab-testing/`
+
+Category:
+
+`Guides and How-tos`
+
+The homepage must not show other posts and must not invent content.
 
 ## Layout
 
@@ -364,23 +422,46 @@ Link:
 
 `/academy/`
 
-Use the appropriate secondary/CTA button treatment from `design.md`.
+Use the primary CTA treatment from `design.md`:
+
+```text
+Default → Green
+Hover → defined alternate interaction color
+```
 
 ---
 
 # 8. Footer
 
-The previous two major footer areas are now combined into one unified Footer section.
+The previous two major footer areas are now combined into one compact Footer section.
 
 There is no separate frog footer area.
 
 There is no map embed.
 
-The footer should feel like one coherent composition rather than two unrelated footer panels.
+The footer must be significantly more compact than the previous implementation: reduced padding, gaps, and column/legal spacing while keeping all the same information clean and readable.
+
+Layout:
+
+```text
+Left:  Company / legal information
+Right: Three navigation columns (Resources, Services, About Us)
+Below right columns: Social logos
+```
+
+## Footer Navigation Columns
+
+The three columns (Resources, Services, About Us) render their items as display-only text.
+
+They are not links and display no URLs.
+
+They keep the same visual styling as the previous footer link columns.
 
 ---
 
 ## 8.1 Footer Navigation
+
+The following lists the display-only column items (with the destinations they reference, for documentation only — no URLs are shown in the rendered footer).
 
 ### Resources
 
@@ -415,7 +496,9 @@ Do not embed Google Maps.
 
 # 8.2 Social Icons
 
-Social links should be represented by small image/icon links.
+Social links are real links (unlike the navigation column items).
+
+They sit below the right navigation columns, aligned to the right on desktop.
 
 Required links:
 
@@ -426,12 +509,10 @@ Required links:
 * GitHub
 * Medium
 
-Icons must be smaller than the previous footer implementation.
-
-Target visual size:
+Icons keep the current size:
 
 ```text
-20px–28px
+28px
 ```
 
 Use consistent dimensions.
@@ -443,6 +524,8 @@ Do not add unrelated icon animations.
 ---
 
 # 8.3 Legal Information
+
+Company/legal information sits on the left side of the footer.
 
 Use:
 

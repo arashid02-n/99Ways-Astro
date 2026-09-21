@@ -143,6 +143,17 @@ The Hero uses:
 
 The Hero background is an approved special state.
 
+It composes two subtle radial glows over the `--color-hero-bg` base, matching the previous design:
+
+```css
+background:
+  radial-gradient(52rem 30rem at 82% 28%,
+    color-mix(in srgb, var(--color-success) 12%, transparent), transparent 65%),
+  radial-gradient(44rem 28rem at 10% 88%,
+    color-mix(in srgb, var(--color-brand) 10%, transparent), transparent 60%),
+  var(--color-hero-bg);
+```
+
 Do not replace it with the green or blue section families.
 
 Do not introduce additional Hero background variants.
@@ -266,6 +277,8 @@ The same CTA behavior must be used consistently across the website.
 Examples:
 
 * Book Intro Call
+* Contact Us (header CTA)
+* View all posts (academy)
 * primary conversion buttons
 * other explicitly designated primary actions
 
@@ -646,16 +659,26 @@ The header must remain visually subordinate to the Hero.
 
 # 15. Footer
 
-The main footer uses a single unified composition.
+The main footer uses a single unified, compact composition.
 
-The previously separate footer content areas must be visually integrated into one main Footer section.
+It must be significantly more compact than the previous implementation: reduced padding, gap, column, and legal spacing while keeping all the same information.
+
+Footer layout:
+
+```text
+Left:   Company / legal information
+Right:  Three navigation columns (Resources, Services, About Us)
+Below right columns: social icons
+```
 
 The footer must contain:
 
-* navigation columns
-* social icons
+* navigation columns (rendered as display-only text, not links)
+* social icons (real links)
 * legal/company information
 * relevant company links
+
+The navigation column items are display-only text: they are not interactive and display no URLs, but keep the visual styling of the previous footer links.
 
 The Google Maps embedded map is removed.
 
@@ -679,6 +702,12 @@ Recommended range:
 
 ```text
 20px–28px
+```
+
+Current size:
+
+```text
+28px
 ```
 
 Desktop and mobile may use slightly different values, but all icons should remain visually consistent.
